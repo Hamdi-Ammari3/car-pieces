@@ -278,9 +278,6 @@ export default function Page() {
           </div>
 
           <div className="right">
-            <div className="phone">
-              <h4>+(216) 50 853 171</h4>
-            </div>
               {!isAdmin ? (
                 <div className="admin-box">
                   {!showLoginInput ? (
