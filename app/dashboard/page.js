@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { collection, addDoc, getDocs, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, orderBy,doc, updateDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {DB} from '../../firebaseConfig';
 import { useRouter } from "next/navigation";
@@ -56,7 +56,14 @@ export default function Dashboard() {
         const b = await getDocs(collection(DB, "brands"));
         const f = await getDocs(collection(DB, "families"));
         const m = await getDocs(collection(DB, "models"));
-        const o = await getDocs(collection(DB, "orders"));
+
+        // 🔥 ORDERED QUERY (NEWEST FIRST)
+        const ordersQuery = query(
+            collection(DB, "orders"),
+            orderBy("createdAt", "desc")
+        );
+
+        const o = await getDocs(ordersQuery);
 
         setBrands(b.docs.map(d => ({ id: d.id, ...d.data() })));
         setFamilies(f.docs.map(d => ({ id: d.id, ...d.data() })));
