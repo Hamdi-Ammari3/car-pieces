@@ -8,7 +8,7 @@ import { MdOutlineVerifiedUser } from "react-icons/md";
 import { FiPackage } from "react-icons/fi";
 import { GoGear } from "react-icons/go";
 import { LuCar,LuShoppingCart } from "react-icons/lu";
-import { IoIosArrowForward,IoMdArrowBack } from "react-icons/io";
+import { IoIosArrowForward,IoMdArrowBack,IoLogoWhatsapp } from "react-icons/io";
 import "./style.css";
 
 export default function Page() {
@@ -217,13 +217,19 @@ export default function Page() {
                 <img src={item.image} />
 
                 <div className="cart-info">
-                  <h4>{item.name}</h4>
-                  <p>Ref: {item.reference}</p>
-
+                  <div className="cart-info-name">
+                    <h4>{item.name}</h4>
+                    <p>Ref: {item.reference}</p>
+                  </div>
+          
                   <div className="qty">
                     <button onClick={() => updateQty(item.id, -1)}>-</button>
                     <span>{item.qty}</span>
                     <button onClick={() => updateQty(item.id, 1)}>+</button>
+                  </div>
+
+                  <div className="price">
+                    <h5>{item.price * item.qty} TND</h5>
                   </div>
 
                   <button
@@ -234,9 +240,7 @@ export default function Page() {
                   </button>
                 </div>
 
-                <div className="price">
-                  {item.price * item.qty} TND
-                </div>
+                
               </div>
             ))}
           </div>
@@ -277,7 +281,9 @@ export default function Page() {
           </div>
 
           <div className="right">
-            <div className="phone">+(216) 50 853 171</div>
+            <div className="phone">
+              <h4>+(216) 50 853 171</h4>
+            </div>
               {!isAdmin ? (
                 <div className="admin-box">
                   {!showLoginInput ? (
@@ -507,10 +513,24 @@ export default function Page() {
         <div className="container footer-grid">
 
           <div className="footer-grid-box">
-            <h2>SHP<span>RA</span></h2>
+            <h3>SHP<span>RA</span></h3>
             <p className="footer-paragraph">
               Votre partenaire de confiance pour toutes vos pièces de rechange au meilleur prix en Tunisie.
             </p>
+            {/* 🔥 SIGNATURE */}
+            <div className="footer-signature">
+              <p>Développé par</p>
+              <div className="footer-actions">
+                <h5>Site Pro Tunisie</h5>
+                <a
+                  href="https://wa.me/21651510183"
+                  target="_blank"
+                  className="whatsapp"
+                >
+                  <IoLogoWhatsapp size={18} color="#22c55e"/>
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="footer-grid-box">
@@ -527,7 +547,7 @@ export default function Page() {
             <ul>
               <li>Tunis, Tunisie</li>
               <li>contact@shrpa.tn</li>
-              <li>+(216) 71 000 000</li>
+              <li>+(216) 50 853 171</li>
             </ul>
           </div>
 
